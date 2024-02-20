@@ -1,26 +1,28 @@
-import 'package:Xcelerate/Screens/Addtodos.dart.';
-import 'package:Xcelerate/Screens/MemoPad.dart';
+import 'package:Xcelerate/Screens/tasks_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:Xcelerate/screens/tasks_screen.dart';
+import 'package:provider/provider.dart';
+import '../models/task_data.dart';
+import 'MemoPad.dart';
+import 'package:Xcelerate/models/task_data.dart';
+import 'package:Xcelerate/Screens/add_task_screen.dart';
+import 'package:Xcelerate/Screens/tasks_screen.dart';
 
-void main() => runApp( MyApp());
 
-class Addtodos extends StatefulWidget {
-  const Addtodos({super.key});
+void main() => runApp(MyApp());
 
-  @override
-  State<Addtodos> createState() => _AddtodosState();
-}
+class TasksScreen extends StatelessWidget {
+   TasksScreen({super.key});
 
-class _AddtodosState extends State<Addtodos> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.teal,
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-
+    return ChangeNotifierProvider(
+      create: (context) => TaskData(), // Use create instead of builder
+      child: MaterialApp(
+        home: TasksScreen(),
       ),
     );
   }
 }
+
 

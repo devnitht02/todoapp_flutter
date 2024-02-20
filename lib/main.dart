@@ -113,7 +113,7 @@ class _HomeState extends State<Home> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Addtodos()), // Navigating to MemoPad.dart
+                      MaterialPageRoute(builder: (context) => TasksScreen()), // Navigating to MemoPad.dart
                     );
                   },
                   child: gridItem('Add Todo\'s', Icons.playlist_add),
