@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_summernote/flutter_summernote.dart';
-import 'package:todo_go/main.dart';
+import 'package:Xcelerate/main.dart';
 
 void main() {
   runApp(MyApp());

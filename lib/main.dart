@@ -1,12 +1,20 @@
+import 'package:Xcelerate/Screens/Addtodos.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_icons/weather_icons.dart';
 import 'package:flutter/src/services/asset_manifest.dart' as asset_manifest;
-import 'page_sources/MemoPad.dart'; // Importing MemoPad.dart
+import 'Screens/MemoPad.dart';
+import 'Screens/Addtodos.dart';
+import 'Screens/Calendar.dart';
+import 'Screens/Timetable.dart';
+import 'Screens/Memostorage.dart';
+import 'Screens/History.dart';
 
-void main() => runApp(const CardExampleApp());
 
-class CardExampleApp extends StatelessWidget {
-  const CardExampleApp({Key? key});
+
+void main() => runApp(const Todohome());
+
+class Todohome extends StatelessWidget {
+  const Todohome({super.key, Key});
 
   @override
   Widget build(BuildContext context) {
@@ -101,8 +109,24 @@ class _HomeState extends State<Home> {
               mainAxisSpacing: 10,
               crossAxisCount: 2,
               children: <Widget>[
-                gridItem('Add Todo\'s', Icons.playlist_add),
-                gridItem('Calendar', Icons.calendar_today),
+                GestureDetector( // Using GestureDetector for making Memo Pad clickable
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Addtodos()), // Navigating to MemoPad.dart
+                    );
+                  },
+                  child: gridItem('Add Todo\'s', Icons.playlist_add),
+                ),
+                GestureDetector( // Using GestureDetector for making Memo Pad clickable
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Calendar()), // Navigating to MemoPad.dart
+                    );
+                  },
+                  child: gridItem('Calendar', Icons.calendar_today),
+                ),
                 GestureDetector( // Using GestureDetector for making Memo Pad clickable
                   onTap: () {
                     Navigator.push(
@@ -112,9 +136,38 @@ class _HomeState extends State<Home> {
                   },
                   child: gridItem('Memo Pad', Icons.notes),
                 ),
-                gridItem('Time Table', Icons.schedule),
-                gridItem('Memo Storage', Icons.storage),
-                gridItem('History', Icons.history),
+                GestureDetector( // Using GestureDetector for making Memo Pad clickable
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Timetable()), // Navigating to MemoPad.dart
+                    );
+                  },
+                  child:  gridItem('Time Table', Icons.schedule),
+                ),
+
+
+
+                GestureDetector( // Using GestureDetector for making Memo Pad clickable
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Memostorage()), // Navigating to MemoPad.dart
+                    );
+                  },
+                  child: gridItem('Memo Storage', Icons.storage),
+                ),
+                GestureDetector( // Using GestureDetector for making Memo Pad clickable
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => History()), // Navigating to MemoPad.dart
+                    );
+                  },
+                  child: gridItem('History', Icons.history),
+                ),
+
+
               ],
             ),
           ),

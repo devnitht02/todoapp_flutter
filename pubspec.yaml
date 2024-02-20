@@ -1,4 +1,4 @@
-name: todo_go
+name: Xcelerate
 description: "A new Flutter project."
 publish_to: 'none'
 version: 1.0.0+1
@@ -18,6 +18,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   google_fonts: ^2.0.0
   flutter_summernote: ^1.1.1
+  timetable_view: ^0.3.0
 
 flutter:
   uses-material-design: true
