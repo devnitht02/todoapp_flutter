@@ -1,0 +1,59 @@
+name: todo_go
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.6 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  weather_icons: ^3.0.0
+  flutter_lints: ^2.0.0
+  google_fonts: ^2.0.0
+  flutter_summernote: ^1.1.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - images/
+
+  fonts:
+    - family: ProtestRiot-Regular
+      fonts:
+        - asset: fonts/ProtestRiot-Regular.ttf
+
+    - family: RacingSansOne-Regular
+      fonts:
+        - asset: fonts/RacingSansOne-Regular.ttf
+
+    - family: BebasNeue-Regular
+      fonts:
+        - asset: fonts/BebasNeue-Regular.ttf
+
+    - family: Roboto-Regular
+      fonts:
+        - asset: fonts/Roboto-Regular.ttf
+
+    - family: Roboto-Black
+      fonts:
+        - asset: fonts/Roboto-Black.ttf
+
+    - family: Roboto-Bold
+      fonts:
+        - asset: fonts/Roboto-Bold.ttf
+
+    - family: Roboto-Light
+      fonts:
+        - asset: fonts/Roboto-Light.ttf
+
+    - family: Roboto-LightItalic
+      fonts:
+      - asset: fonts/Roboto-LightItalic.ttf
+
