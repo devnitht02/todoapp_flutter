@@ -1,118 +1,72 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:open_filex/open_filex.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:file_picker/file_picker.dart';
 
-void main() => runApp(const Memostorage());
-
-class Memostorage extends StatefulWidget {
-  const Memostorage({Key? key}) : super(key: key);
-
-  @override
-  MemostorageState createState() => MemostorageState();
-}
-
-class MemostorageState extends State<Memostorage> {
-  var _openResult = 'Unknown';
-
-  Future<void> openFile() async {
-    _openAndroidExternalImage();
-  }
-
-  // ignore: unused_element
-  _openIOSFile() async {
-    final result = await OpenFilex.open("some path in your iOS device");
-    setState(() {
-      _openResult = "type=${result.type}  message=${result.message}";
-    });
-  }
-
-  // ignore: unused_element
-  _openAndroidPrivateFile() async {
-    //open an app private storage file
-    final result = await OpenFilex.open(
-        "/data/data/YOUR_PACKAGE_NAME/cache/IMG20230610192318.jpg");
-    setState(() {
-      _openResult = "type=${result.type}  message=${result.message}";
-    });
-  }
-
-  // ignore: unused_element
-  _openAndroidOtherAppFile() async {
-    //open an external storage image file on android 13
-    if (await Permission.manageExternalStorage.request().isGranted) {
-      final result = await OpenFilex.open("/data/user/0/xxx/images/1.jpg");
-      setState(() {
-        _openResult = "type=${result.type}  message=${result.message}";
-      });
-    }
-  }
-
-  // ignore: unused_element
-  _openAndroidExternalImage() async {
-    //open an external storage image file on android 13
-    if (await Permission.photos.request().isGranted) {
-      final result = await OpenFilex.open("/sdcard/Download/flutter.png");
-      setState(() {
-        _openResult = "type=${result.type}  message=${result.message}";
-      });
-    }
-  }
-
-  // ignore: unused_element
-  _openAndroidExternalVideo() async {
-    //open an external storage video file on android 13
-    if (await Permission.videos.request().isGranted) {
-      final result = await OpenFilex.open("/sdcard/Download/R-C.mp4");
-      setState(() {
-        _openResult = "type=${result.type}  message=${result.message}";
-      });
-    }
-  }
-
-  // ignore: unused_element
-  _openAndroidExternalAudio() async {
-    //open an external storage audio file on android 13
-    if (await Permission.audio.request().isGranted) {
-      final result = await OpenFilex.open("/sdcard/Download/R-C.mp3");
-      setState(() {
-        _openResult = "type=${result.type}  message=${result.message}";
-      });
-    }
-  }
-
-  // ignore: unused_element
-  _openAndroidExternalFile() async {
-    //open an external storage file
-    if (await Permission.manageExternalStorage.request().isGranted) {
-      final result = await OpenFilex.open("/sdcard/Android/data/R-C.xml");
-      setState(() {
-        _openResult = "type=${result.type}  message=${result.message}";
-      });
-    }
-  }
-
+class MemoStoragePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('open result: $_openResult\n'),
-              TextButton(
-                onPressed: openFile,
-                child: const Text('Tap to open file'),
-              ),
-            ],
-          ),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Memo Storage'),
+      ),
+      body: Center(
+        child: Text('Your memo storage content goes here.'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          // Open file picker to select files
+          FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+          if (result != null) {
+            // Process selected files
+            List<String> filePaths = result.paths.map((path) => path!).toList();
+            // Save filePaths to memo_storage.dart or handle saving logic
+            saveToMemoStorage(context, filePaths);
+          } else {
+            // User canceled the file picker
+          }
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
+
+  // Function to save file paths to memo_storage.dart or handle saving logic
+  void saveToMemoStorage(BuildContext context, List<String> filePaths) {
+    // Implement your saving logic here
+    // For example, you can write filePaths to a file or store them in a database
+    // You can also navigate to another page passing the selected filePaths
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => MemoStorageDetailsPage(filePaths: filePaths)),
+    );
+  }
+}
+
+class MemoStorageDetailsPage extends StatelessWidget {
+  final List<String> filePaths;
+
+  const MemoStorageDetailsPage({required this.filePaths});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Memo Storage Details'),
+      ),
+      body: ListView.builder(
+        itemCount: filePaths.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(filePaths[index]),
+          );
+        },
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: MemoStoragePage(),
+  ));
 }

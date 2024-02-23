@@ -3,11 +3,10 @@ import 'package:flutter_summernote/flutter_summernote.dart';
 import 'package:Xcelerate/main.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(Memopad());
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class Memopad extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -42,7 +41,6 @@ class _NotesPageState extends State<NotesPage> {
           child: Text(widget.title,
             style: TextStyle(
               fontSize: 20.0,
-              color: Colors.white,
               fontFamily: 'Roboto-Black',
 
             ),),

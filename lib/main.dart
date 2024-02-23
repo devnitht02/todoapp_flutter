@@ -1,20 +1,17 @@
-import 'package:Xcelerate/Screens/Addtodos.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_icons/weather_icons.dart';
-import 'package:flutter/src/services/asset_manifest.dart' as asset_manifest;
-import 'Screens/MemoPad.dart';
-import 'Screens/Addtodos.dart';
-import 'Screens/Calendar.dart';
-import 'Screens/Timetable.dart';
-import 'Screens/Memostorage.dart';
-import 'Screens/History.dart';
-
+import 'package:Xcelerate/Screens/MemoPad.dart';
+import 'package:Xcelerate/Screens/Addtodos.dart';
+import 'package:Xcelerate/Screens/Calendar.dart';
+import 'package:Xcelerate/Screens/Timetable.dart';
+import 'package:Xcelerate/Screens/Memostorage.dart';
+import 'package:Xcelerate/Screens/History.dart';
 
 
 void main() => runApp(const Todohome());
 
 class Todohome extends StatelessWidget {
-  const Todohome({super.key, Key});
+  const Todohome({Key? key}); // Remove "super.key" from here
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +67,7 @@ class _HomeState extends State<Home> {
         children: [
           Card(
             shape: RoundedRectangleBorder(
-              borderRadius:
-              BorderRadius.circular(21.0), // Adjust the radius as needed
+              borderRadius: BorderRadius.circular(21.0), // Adjust the radius as needed
             ),
             child: Center(
               child: Column(
@@ -113,7 +109,7 @@ class _HomeState extends State<Home> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => TasksScreen()), // Navigating to MemoPad.dart
+                      MaterialPageRoute(builder: (context) => Todohome()), // Navigating to MemoPad.dart
                     );
                   },
                   child: gridItem('Add Todo\'s', Icons.playlist_add),
@@ -145,28 +141,24 @@ class _HomeState extends State<Home> {
                   },
                   child:  gridItem('Time Table', Icons.schedule),
                 ),
-
-
-
                 GestureDetector( // Using GestureDetector for making Memo Pad clickable
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Memostorage()), // Navigating to MemoPad.dart
+                      MaterialPageRoute(builder: (context) => MemoStoragePage()), // Navigating to MemoPad.dart
                     );
                   },
                   child: gridItem('Memo Storage', Icons.storage),
                 ),
-                GestureDetector( // Using GestureDetector for making Memo Pad clickable
+                GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => History()), // Navigating to MemoPad.dart
+                      MaterialPageRoute(builder: (context) => AddTaskScreen()), // Navigate to the HistoryPage
                     );
                   },
                   child: gridItem('History', Icons.history),
                 ),
-
 
               ],
             ),
